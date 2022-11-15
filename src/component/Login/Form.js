@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Checkbox } from "@material-ui/core";
+import { TextField, Checkbox,Container } from "@material-ui/core";
 
 function Form() {
   const masInfo = () => {
@@ -14,7 +14,8 @@ function Form() {
     );
   };
   return (
-    <div className="formLogin">
+    <Container fixed className="formLogin">
+    
       <h1 className="inicioLogin"> Inicia sesión </h1>
       <div>
         <TextField
@@ -71,7 +72,7 @@ function Form() {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

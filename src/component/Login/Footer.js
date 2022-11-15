@@ -2,8 +2,8 @@ import React from 'react'
 
 function Footer() {
     return (
-        <div>
-            <div className='loginFooter'>
+        <div className='loginFooter'>
+            <div >
                 <h5>¿Preguntas? Llama al 0800 345 1593</h5>
             </div>
             <ul class="footerLinks">
@@ -27,6 +27,10 @@ function Footer() {
                         Privacidad
                     </a>
                 </li>
+                </ul>
+
+
+                <ul class="footerLinks">
                 <li class="footerLinkItem" >
                     <a class="footerLink" href="https://reactjs.org" >
                         Preferencias de cookies
