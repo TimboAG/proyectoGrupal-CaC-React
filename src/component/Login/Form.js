@@ -1,21 +1,29 @@
-import React from "react";
-import { TextField, Checkbox,Container } from "@material-ui/core";
+import React, { useState } from "react";
+import { TextField, Checkbox, Container } from "@material-ui/core";
 
 function Form() {
-  const masInfo = () => {
-    return (
-      <p>
-        La información recopilada por Google reCAPTCHA está sujeta a la Política
-        de privacidad y a las Condiciones del servicio de Google, y se utiliza
-        para proporcionar, mantener y mejorar el servicio de reCAPTCHA, así como
-        para fines generales de seguridad (Google no la utiliza para
-        personalizar publicidad).
-      </p>
-    );
-  };
+
+  const [mas, setMas] = useState(false);
+
+  const mostrar = () => {
+    setMas(!mas);
+  }
+
+  const miEstilo = () => {
+    return {
+      display: mas ? 'block' : 'none',
+    }
+  }
+
+  const miEstiloButton = () => {
+    return {
+      display: mas ?  'none': 'block',
+    }
+  }
+
   return (
     <Container fixed className="formLogin">
-    
+
       <h1 className="inicioLogin"> Inicia sesión </h1>
       <div>
         <TextField
@@ -62,12 +70,22 @@ function Form() {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="texto">
               Esta página está protegida por Google reCAPTCHA para comprobar que
               no eres un robot
-              <button onClick={masInfo()} className="buttoon1">
+              <button onClick={() => mostrar()} className="buttoon1" style={miEstiloButton()}>
                 Más info
               </button>
+              <spam id="textButton" className="textButton" style={miEstilo()} >
+                <p> La información recopilada por Google reCAPTCHA está sujeta a la &nbsp;
+                  <a href="https://policies.google.com/privacy" className="policies">Política de privacidad</a>
+                  &nbsp;y a las &nbsp;
+                  <a href="https://policies.google.com/terms" className="policies">
+                    Condiciones del servicio</a>&nbsp; de Google, y se utiliza para proporcionar,
+                  mantener y mejorar el servicio de reCAPTCHA,
+                  así como para fines generales de seguridad
+                  (Google no la utiliza para personalizar publicidad).</p>
+              </spam>
             </div>
           </div>
         </div>
