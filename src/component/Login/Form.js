@@ -1,7 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { TextField, Checkbox, Container } from "@material-ui/core";
+import { AuthContext } from "../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Form() {
+  const {setUser: setUsername, setIsAuth} =useContext(AuthContext);
+  const Navigate = useNavigate();
+  const [user, setUSer] = useState({
+    email: "",
+    pass: "",
+  });
+  const [pass, setPass] = useState("");
+
+const handleChange = (e) => {
+const {name, value} = e.target;
+setUSer({
+  ...user,
+  [name]: value,
+})
+}
 
   const [mas, setMas] = useState(false);
 
@@ -21,17 +38,38 @@ function Form() {
     }
   }
 
+  const handleSubmit= (e) =>{
+e.preventDefault();
+const {email} = user;
+const userLogged = {
+  id: Date.now(),
+  token: "123456",
+  username: email,
+}
+setUsername(userLogged);
+setIsAuth(true);
+
+Navigate("/home", {
+  replace: true,
+});
+  }
+
   return (
     <Container fixed className="formLogin">
 
       <h1 className="inicioLogin"> Inicia sesión </h1>
       <div>
+
+        <form onSubmit={handleSubmit}>
         <TextField
           id="filled-basic"
           label="Email o número de telefono"
           variant="filled"
-          type="email"
+          type="text"
           className="loginInput"
+          name="email"
+          onChange={handleChange}
+          value = {user.email}
         />
 
         <br></br>
@@ -43,10 +81,15 @@ function Form() {
           variant="filled"
           type="password"
           className="loginInput"
+          name="pass"
+          onChange={handleChange}
+          value={user.pass}
         />
 
-        <p className="loginError"></p>
-        <button className="loginButton">Iniciar Sesión</button>
+       <button className="loginButton" type="submit">Iniciar Sesión</button>
+        </form>
+
+
         <div className="login__child">
           <ul id="lista1">
             <li>
@@ -73,7 +116,7 @@ function Form() {
             <div className="texto">
               Esta página está protegida por Google reCAPTCHA para comprobar que
               no eres un robot
-              <button onClick={() => mostrar()} className="buttoon1" style={miEstiloButton()}>
+              <button type="submit" onClick={() => mostrar()} className="buttoon1" style={miEstiloButton()}>
                 Más info
               </button>
               <spam id="textButton" className="textButton" style={miEstilo()} >

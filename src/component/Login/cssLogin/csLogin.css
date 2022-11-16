@@ -69,6 +69,8 @@
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  cursor: pointer;
+
 }
 
 .loginCheckbox {
@@ -171,12 +173,33 @@ a {
   color: rgb(109, 108, 108);
 }
 
-.texto{
+.texto {
   color: rgb(109, 108, 108);
 }
-.policies{
+
+.policies {
   color: rgb(64, 32, 181);
 }
+
 .policies:hover {
-  text-decoration:underline;
+  text-decoration: underline;
 }
+
+.selectFooter {
+  width: 12%;
+  padding: 1.5%;
+  padding-left: 3.5%;
+  background-color: #000;
+  background-image: none;
+  border: 1px solid #333;
+  color: #333;
+  margin-left: 4%;
+}
+
+.iconLang {
+  padding: auto;
+  color: #fff;
+  position: absolute;
+  z-index: 2;
+}
+

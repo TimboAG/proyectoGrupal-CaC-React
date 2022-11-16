@@ -1,4 +1,6 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form';
+import { FaGlobe } from 'react-icons/fa';
 
 function Footer() {
     return (
@@ -27,10 +29,10 @@ function Footer() {
                         Privacidad
                     </a>
                 </li>
-                </ul>
+            </ul>
 
 
-                <ul class="footerLinks">
+            <ul class="footerLinks">
                 <li class="footerLinkItem" >
                     <a class="footerLink" href="https://reactjs.org" >
                         Preferencias de cookies
@@ -42,6 +44,11 @@ function Footer() {
                     </a>
                 </li>
             </ul>
+            <Form.Select aria-label="Default select example" className='selectFooter'> 
+            <FaGlobe/> 
+                <option className='optionLang' value="1">Español</option>
+                <option value="2">English</option>
+            </Form.Select>
         </div>
     )
 }
