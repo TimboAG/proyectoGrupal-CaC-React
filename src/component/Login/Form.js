@@ -4,55 +4,86 @@ import { AuthContext } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function Form() {
-  const {setUser: setUsername, setIsAuth} =useContext(AuthContext);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const { setUSer: setUsername, setIsAuth } = useContext(AuthContext);
+
   const [user, setUSer] = useState({
     email: "",
     pass: "",
   });
+
   const [pass, setPass] = useState("");
 
-const handleChange = (e) => {
-const {name, value} = e.target;
-setUSer({
-  ...user,
-  [name]: value,
-})
-}
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUSer({
+      ...user,
+      [name]: value,
+    });
+    setPass({
+      ...pass,
+      [name]: value,
+    });
+  };
+
+
+
+
+
+
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { email } = user;
+
+    const userLogged = {
+      id: Date.now(),
+      token: "123456",
+      username: email,
+    };
+
+    setUsername(userLogged);
+    setIsAuth(true);
+
+    navigate("/home", {
+      replace: true,
+    });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
 
   const [mas, setMas] = useState(false);
 
   const mostrar = () => {
     setMas(!mas);
-  }
+  };
 
   const miEstilo = () => {
     return {
       display: mas ? 'block' : 'none',
-    }
-  }
+    };
+  };
 
   const miEstiloButton = () => {
     return {
-      display: mas ?  'none': 'block',
-    }
-  }
+      display: mas ? 'none' : 'block',
+    };
+  };
 
-  const handleSubmit= (e) =>{
-e.preventDefault();
-const {email} = user;
-const userLogged = {
-  id: Date.now(),
-  token: "123456",
-  username: email,
-}
-setUsername(userLogged);
-setIsAuth(true);
-
-Navigate("/home", {
-  replace: true,
-});
-  }
 
   return (
     <Container fixed className="formLogin">
@@ -60,33 +91,33 @@ Navigate("/home", {
       <h1 className="inicioLogin"> Inicia sesión </h1>
       <div>
 
-        <form onSubmit={handleSubmit}>
-        <TextField
-          id="filled-basic"
-          label="Email o número de telefono"
-          variant="filled"
-          type="text"
-          className="loginInput"
-          name="email"
-          onChange={handleChange}
-          value = {user.email}
-        />
+        <form onSubmit={handleSubmit} >
+          <TextField
+            id="filled-basic"
+            label="Email o número de telefono"
+            variant="filled"
+            type="text"
+            className="loginInput"
+            name="email"
+            onChange={handleChange}
+            value={user.email}
+          />
 
-        <br></br>
-        <br></br>
+          <br></br>
+          <br></br>
 
-        <TextField
-          id="filled-basic"
-          label="Contraseña"
-          variant="filled"
-          type="password"
-          className="loginInput"
-          name="pass"
-          onChange={handleChange}
-          value={user.pass}
-        />
+          <TextField
+            id="filled-basic2"
+            label="Contraseña"
+            variant="filled"
+            type="password"
+            className="loginInput"
+            name="pass"
+            onChange={handleChange}
+            value={user.pass}
+          />
 
-       <button className="loginButton" type="submit">Iniciar Sesión</button>
+          <button className="loginButton" type="submit">Iniciar Sesión</button>
         </form>
 
 
@@ -119,7 +150,7 @@ Navigate("/home", {
               <button type="submit" onClick={() => mostrar()} className="buttoon1" style={miEstiloButton()}>
                 Más info
               </button>
-              <spam id="textButton" className="textButton" style={miEstilo()} >
+              <div id="textButton" className="textButton" style={miEstilo()} >
                 <p> La información recopilada por Google reCAPTCHA está sujeta a la &nbsp;
                   <a href="https://policies.google.com/privacy" className="policies">Política de privacidad</a>
                   &nbsp;y a las &nbsp;
@@ -128,7 +159,7 @@ Navigate("/home", {
                   mantener y mejorar el servicio de reCAPTCHA,
                   así como para fines generales de seguridad
                   (Google no la utiliza para personalizar publicidad).</p>
-              </spam>
+              </div>
             </div>
           </div>
         </div>
